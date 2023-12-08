@@ -32,6 +32,6 @@ app.use('/api/budget', budgetRouter);
 app.use('/login', loginRouter)
 
 const port = 3001;
-app.listen(port, () => {
-    console.log('App Running at localhost:3001/');
+app.listen(process.env.PORT || port, () => {
+    console.log(`Listening on ${process.env.PORT || port}`);
 });
