@@ -22,7 +22,7 @@ router.post('/', async (req, res, next) => {
         const token = jwt.sign(payload, secretKey, { expiresIn: expiration });
         res.status(200).send({ message: "Login Successful", success: true, token: token });
     } else {
-        res.status(400).send({ message: "Login UnSuccessful", success: false });
+        res.status(401).send({ message: "Login UnSuccessful", success: false });
     }
     } catch(error) {
         console.log(error);
