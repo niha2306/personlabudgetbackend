@@ -3,10 +3,6 @@ const cors = require('cors');
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose');
 
-app.use(cors({
-    origin: true
-}));
-
 const userRouter = require('./routes/userRouter');
 const budgetRouter = require('./routes/budgetRouter');
 const loginRouter = require('./routes/loginRouter');
@@ -14,6 +10,9 @@ const loginRouter = require('./routes/loginRouter');
 const uri = "mongodb+srv://saiNiharika:niharika%40123@personalbudget.qfhnl3h.mongodb.net/";
 
 const app = express();
+app.use(cors({
+    origin: true
+}));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
