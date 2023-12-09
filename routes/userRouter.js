@@ -22,6 +22,7 @@ router.post('/', async (req, res, next) => {
         if(name == "" || email == "" || password == "" || mobile=="") {
             res.status(400).send({message: "data is invalid"})
         }
+        console.log(name, email, password, mobile)
         const hashedPassword = await bcrypt.hash(password, 10);
         const newUser = new User({
             name: name,
@@ -33,7 +34,7 @@ router.post('/', async (req, res, next) => {
         const createdUser = await newUser.save();
         res.status(201).send(createdUser);
     } catch (error) {
-        res.status(502).send(error);
+        res.status(500).send(error);
         console.log(error);
     }
 });

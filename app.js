@@ -11,7 +11,7 @@ const uri = "mongodb+srv://saiNiharika:niharika%40123@personalbudget.qfhnl3h.mon
 
 const app = express();
 app.use(cors({
-    origin: 'http://localhost:3000'
+    origin: true
 }));
 
 app.use(function (request, response, next) {
