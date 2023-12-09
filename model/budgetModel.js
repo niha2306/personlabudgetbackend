@@ -7,11 +7,15 @@ const budgetSchema = new Schema({
     required: true
   },
   budget: {
-    type: mongoose.Types.Decimal128,
+    type: String,
     required: true
   },
+  month: {
+    type: String,
+    required: true
+  }
 });
 
-const Budget = mongoose.model('Budget', budgetSchema);
+const Budget = mongoose.model('PersonalBudget', budgetSchema);
 
 module.exports = Budget;
