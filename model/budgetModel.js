@@ -13,6 +13,10 @@ const budgetSchema = new Schema({
   month: {
     type: String,
     required: true
+  }, 
+  year: {
+    type: String,
+    required: true
   }
 });
 

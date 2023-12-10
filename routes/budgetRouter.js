@@ -14,7 +14,7 @@ router.get('/', async (req, res, next) => {
 });
 
 router.post('/', async (req, res, next) => {
-    const {title, budget, month} = req.body;
+    const {title, budget, month, year} = req.body;
 
     if(title == "" || budget == "") {
         res.status(400).send({message: "data is invalid"})
@@ -24,6 +24,7 @@ router.post('/', async (req, res, next) => {
         title: title,
         budget: budget,
         month: month,
+        year: year,
     });
 
     const createdBudget = await newBudget.save();
