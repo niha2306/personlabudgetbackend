@@ -17,6 +17,10 @@ const budgetSchema = new Schema({
   year: {
     type: String,
     required: true
+  },
+  userId: {
+    type: mongoose.Types.ObjectId,
+    required: true
   }
 });
 

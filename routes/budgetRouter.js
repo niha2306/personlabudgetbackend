@@ -1,6 +1,8 @@
 const router = require('express').Router();
 
+const { default: mongoose } = require('mongoose');
 const Budget = require('../model/budgetModel');
+const User = require('../model/userModel');
 
 router.get('/', async (req, res, next) => {
     
@@ -14,21 +16,28 @@ router.get('/', async (req, res, next) => {
 });
 
 router.post('/', async (req, res, next) => {
-    const {title, budget, month, year} = req.body;
+    const {title, budget, month, year, userId} = req.body;
 
     if(title == "" || budget == "") {
         res.status(400).send({message: "data is invalid"})
     }
 
-    const newBudget = new Budget({
-        title: title,
-        budget: budget,
-        month: month,
-        year: year,
-    });
-
-    const createdBudget = await newBudget.save();
-    res.status(201).send(createdBudget);
+    const user = await User.findById(userId);
+    if(user) {
+        const newBudget = new Budget({
+            title: title,
+            budget: budget,
+            month: month,
+            year: year,
+            userId: user?._id
+        });
+    
+        const createdBudget = await newBudget.save();
+        res.status(201).send(createdBudget);
+    }
+    else {
+        res.status(400).send({message: "User not found"});
+    }
 });
 
 router.put('/:id', async (req, res, next) => {
