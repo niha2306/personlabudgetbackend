@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose');
+const compression = require('compression');
 
 const userRouter = require('./routes/userRouter');
 const budgetRouter = require('./routes/budgetRouter');
@@ -22,6 +23,7 @@ app.use(function (request, response, next) {
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(compression());
 
 const budget = require('./budget.json');
 
